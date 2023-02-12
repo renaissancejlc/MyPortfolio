@@ -5,8 +5,6 @@
 // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
-
-
 // sidebar variables
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
@@ -30,11 +28,12 @@ for (let i = 0; i < selectItems.length; i++) {
     selectValue.innerText = this.innerText;
     elementToggleFunc(select);
     filterFunc(selectedValue);
+    filterInterestsFunc(selectedValue);
 
   });
 }
 
-// filter variables
+// filter project variables
 const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
@@ -53,6 +52,27 @@ const filterFunc = function (selectedValue) {
 
 }
 
+// filter interest variables
+const filterInterestItems = document.querySelectorAll("[data-interest-filter-item]");
+const filterInterestsFunc = function (selectedValue) {
+
+  for (let i = 0; i < filterInterestItems.length; i++) {
+
+    if (selectedValue === "☆") {
+      //show just the top five items if star is selected
+      if (i<5){
+        filterInterestItems[i].classList.add("active");
+      }
+    } else if (selectedValue === filterInterestItems[i].dataset.category) {
+      filterInterestItems[i].classList.add("active");
+    } else {
+      filterInterestItems[i].classList.remove("active");
+    }
+
+  }
+
+}
+
 // add event in all filter button items for large screen
 let lastClickedBtn = filterBtn[0];
 
@@ -63,7 +83,7 @@ for (let i = 0; i < filterBtn.length; i++) {
     let selectedValue = this.innerText.toLowerCase();
     selectValue.innerText = this.innerText;
     filterFunc(selectedValue);
-
+    filterInterestsFunc(selectedValue);
     lastClickedBtn.classList.remove("active");
     this.classList.add("active");
     lastClickedBtn = this;
@@ -71,8 +91,6 @@ for (let i = 0; i < filterBtn.length; i++) {
   });
 
 }
-
-
 
 // contact form variables
 const form = document.querySelector("[data-form]");
@@ -92,8 +110,6 @@ for (let i = 0; i < formInputs.length; i++) {
 
   });
 }
-
-
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
