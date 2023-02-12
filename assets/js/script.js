@@ -100,7 +100,7 @@ const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
 // add event to all nav link
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < 7; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
     for (let i = 0; i < pages.length; i++) {
